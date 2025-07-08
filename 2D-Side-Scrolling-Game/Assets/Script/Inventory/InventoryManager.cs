@@ -41,11 +41,17 @@ public class InventoryManager : MonoBehaviour
     }
     public void AddItemByID(string itemId, int amount = 1)
     {
+
         ItemData item = inventory.Find(i => i.id == itemId);
         if (item != null)
         {
             if (item.amount + amount > GetItemByID(itemId).maxStack)
             {
+                if (inventory.Count >= inventoryPresent.inventorySlots.Count)
+                {
+                    Debug.LogWarning("Inventory is full, cannot add more items.");
+                    return;
+                }
                 item.amount = GetItemByID(itemId).maxStack;
                 int slotIndex = inventoryPresent.GetSlotEmptyIndex();
                 ItemData newItem = new ItemData(itemId, slotIndex, amount - (GetItemByID(itemId).maxStack - item.amount));
@@ -58,6 +64,11 @@ public class InventoryManager : MonoBehaviour
         }
         else
         {
+            if (inventory.Count >= inventoryPresent.inventorySlots.Count)
+            {
+                Debug.LogWarning("Inventory is full, cannot add more items.");
+                return;
+            }
             ItemDataSO itemDataSO = allItems.Find(i => i.id == itemId);
             if (amount > itemDataSO.maxStack)
             {
