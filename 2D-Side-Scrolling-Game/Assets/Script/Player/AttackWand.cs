@@ -21,10 +21,10 @@ public class AttackWand : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        Enemy enemy = collision.GetComponent<Enemy>();
+        EnemyAI enemy = collision.GetComponent<EnemyAI>();
         if (enemy != null)
         {
-            enemy.TakeDamage(10); // Example damage value
+            enemy.TakeDamage(GameManager.Instance.Player.damage); // Example damage value
             Destroy(gameObject); // Destroy the attack wand after hitting an enemy
         }
 

@@ -6,14 +6,26 @@ public class EnemyAI : MonoBehaviour
 {
     public enum State { Idle, Patrol, Attack, Dead }
     public State currentState = State.Idle;
-    public int currentHp = 100;
-    public int maxHp = 100;
+    public float currentHp = 100;
+    public float maxHp = 100;
+    public int patrolIndex = 0;
+    public float idleTimer = 0f;
+    public float idleDuration = 0f;
     public float chaseRange = 5f;
     public float attackRange = 1f;
-    private int patrolIndex = 0;
-    public Transform[] patrolPoints;
+    public float attackCooldown = 1.5f;
+    public float lastAttackTime;
     public float speed = 2f;
-    public void TakeDamage(int damage)
+    public Transform[] patrolPoints;
+    public PlayerController player;
+    public GameObject attackPrefab;
+    public void Init()
+    {
+        player = GameManager.Instance.Player;
+        currentHp = maxHp;
+        SetRandomIdleDuration();
+    }
+    public void TakeDamage(float damage)
     {
         currentHp -= damage;
         if (currentHp <= 0)
@@ -22,8 +34,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
     public virtual void Idle()
-    {   
-        
+    {
         Debug.Log("Enemy is idle");
     }
     public virtual void Attack()
@@ -32,43 +43,21 @@ public class EnemyAI : MonoBehaviour
     }
     public virtual void Patrol()
     {
-        if (patrolPoints.Length == 0) return;
-        Transform target = patrolPoints[patrolIndex];
-        transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-        if (Vector2.Distance(transform.position, target.position) < 0.1f)
-        {
-            patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
-        }
+        Debug.Log("Enemy is patrolling");
     }
-    public void Dead()
+    public virtual void Dead()
     {
         Debug.Log("Enemy died");
+        currentState = State.Dead;
         Destroy(gameObject);
     }
-    // Start is called before the first frame update
-    void Start()
+    public void Move(Vector2 targetPosition)
     {
-
+        transform.position = Vector2.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void SetRandomIdleDuration()
     {
-        switch (currentState)
-        {
-            case State.Idle:
-                Idle();
-                break;
-            case State.Patrol:
-                Patrol();
-                break;
-            case State.Attack:
-                Attack();
-                break;
-            case State.Dead:
-                Dead();
-                break;
-        }
+        idleDuration = Random.Range(2f, 3f);
     }
 }
 public enum State
