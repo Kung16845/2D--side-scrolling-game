@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 0}
+  m_Name: Poison
+  m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
+  itemName: Poison HP
+  id: U01
+  icon: {fileID: -5717049752745662821, guid: bc836c1d45c82d548893e9413b9c6b19, type: 3}
+  itemType: 1
+  maxStack: 10
