@@ -29,7 +29,7 @@ public class InventoryManager : MonoBehaviour
         }
         ItemData item = inventory.Find(i => i.id == itemId);
         ItemDataSO itemDataSO = GetItemByID(itemId);
-        if (itemDataSO != null && itemDataSO.itemType == ItemType.Usable)
+        if (itemDataSO.itemType == ItemType.Usable)
         {
             Debug.Log("Using item: " + itemDataSO.itemName);
             RemoveItemByID(itemId);
