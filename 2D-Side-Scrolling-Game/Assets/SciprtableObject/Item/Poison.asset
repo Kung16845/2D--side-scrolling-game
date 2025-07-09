@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Sworld
+  m_Name: Poison
   m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
-  itemName: Sworld
-  id: E01
-  icon: {fileID: 0}
+  itemName: Poison HP
+  id: U01
+  icon: {fileID: -5717049752745662821, guid: bc836c1d45c82d548893e9413b9c6b19, type: 3}
   itemType: 1
-  maxStack: 1
+  maxStack: 10

@@ -13,7 +13,7 @@ public class UIItemData : MonoBehaviour
     {
         itemID = itemData.id;
         itemNameText.text = itemDataSO.itemName;
-        amountText.text = itemData.amount.ToString();
+        amountText.text = itemData.amount.ToString() + "/" + itemDataSO.maxStack.ToString();
         itemIcon.sprite = itemDataSO.icon;
     }
 }

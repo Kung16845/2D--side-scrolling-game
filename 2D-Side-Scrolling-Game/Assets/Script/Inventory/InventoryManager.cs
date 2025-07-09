@@ -32,6 +32,7 @@ public class InventoryManager : MonoBehaviour
         if (itemDataSO.itemType == ItemType.Usable)
         {
             Debug.Log("Using item: " + itemDataSO.itemName);
+            ItemSkillManager.Instance.UseItemSkill(itemId);
             RemoveItemByID(itemId);
         }
         else
