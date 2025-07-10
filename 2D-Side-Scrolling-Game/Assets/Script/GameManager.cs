@@ -1,10 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
+using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {   
     public static GameManager Instance;
+    [SerializeField] TimeManager timeManager;
+    public TimeManager TimeManager => timeManager;
     [SerializeField] private PlayerController player;
     public PlayerController Player => player;
     [SerializeField] private Transform playerSpawnPoint;

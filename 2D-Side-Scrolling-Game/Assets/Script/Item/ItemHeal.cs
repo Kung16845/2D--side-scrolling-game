@@ -9,6 +9,7 @@ public class ItemHeal : ItemSkill
     public override void UseSkill()
     {
         Debug.Log("Healing for " + healAmount + " health.");
+        GameManager.Instance.Player.HealHealth(healAmount);
     }
 
 }

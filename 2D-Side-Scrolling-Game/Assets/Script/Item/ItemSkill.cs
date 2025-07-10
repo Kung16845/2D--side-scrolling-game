@@ -6,6 +6,6 @@ public class ItemSkill : ScriptableObject
     public string itemId;
     public virtual void UseSkill()
     {
-
+        
     }
 }

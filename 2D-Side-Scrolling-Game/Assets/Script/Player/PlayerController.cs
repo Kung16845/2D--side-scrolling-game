@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 public class PlayerController : MonoBehaviour
 {
     public float currentHp = 100f;
@@ -14,6 +15,15 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     public AttackWand attackPrefab;
     public Transform groundCheck;
+    public Slider sliderHealth;
+    public void HealHealth(float amount)
+    {
+        currentHp += amount;
+        if (currentHp > maxHp)
+        {
+            currentHp = maxHp;
+        }
+    }
     public void TakeDamage(float damage)
     {
         currentHp -= damage;
@@ -27,6 +37,11 @@ public class PlayerController : MonoBehaviour
         Move();
         Jump();
         Attack();
+        UpdateUI();
+    }
+    void UpdateUI()
+    {
+        sliderHealth.value = currentHp / maxHp;
     }
     void Move()
     {

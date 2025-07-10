@@ -1,6 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
+using TMPro;
 using UnityEngine;
 
 public class TimeManager : MonoBehaviour
@@ -13,15 +11,20 @@ public class TimeManager : MonoBehaviour
     public Weekday Weekday => weekday;
     [SerializeField] private float timeBetweenTicks = 60f;
     [SerializeField] private float currentTimeBetweenTricks = 0;
+    [SerializeField] TextMeshProUGUI timeText;
 
-    // Update is called once per frame
     void Update()
     {
         currentTimeBetweenTricks += Time.deltaTime;
+        UpdateTimeText();
         if (currentTimeBetweenTricks >= timeBetweenTicks)
         {
             TickPeriod();
         }
+    }
+    void UpdateTimeText()
+    {
+        timeText.text = GetTimeString();
     }
     public void TickPeriod()
     {
@@ -44,8 +47,7 @@ public class TimeManager : MonoBehaviour
     [ContextMenu("GetTimeString")]
     public string GetTimeString()
     {   
-        Debug.Log($"Day : {day} {weekday} {timePeriod}");
-        return $"Day : {day} {weekday} {timePeriod}";
+        return $"Day: {day}, Weekday: {weekday}, Time: {timePeriod}";
     }
 }
 public enum TimePeriod
