@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Box
-  m_EditorClassIdentifier: Assembly-CSharp::ItemDataSO
+  m_Script: {fileID: 11500000, guid: 13103b21f6352e94cb00d20baa6a88c1, type: 3}
+  m_Name: BoxSO
+  m_EditorClassIdentifier: 
   itemName: Box
   id: P01
   icon: {fileID: 8284008178146917663, guid: e85c6e02fda4a004b84664f435ad4d73, type: 3}
