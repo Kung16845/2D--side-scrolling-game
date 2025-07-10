@@ -13,11 +13,7 @@ public class CraftManager : MonoBehaviour
         if (Instance == null) Instance = this;
     }
     private void Update() {
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            if (uICraft.activeSelf) uICraft.SetActive(false);
-            else uICraft.SetActive(true);    
-        }
+        
     }
     public void SetCurrentCraftRecipeID(UICraft uICraft)
     {
