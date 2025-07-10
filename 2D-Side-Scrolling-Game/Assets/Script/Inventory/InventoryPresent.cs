@@ -57,9 +57,9 @@ public class InventoryPresent : MonoBehaviour
     }
     [ContextMenu("RefreshUI")]
     public void RefreshUI()
-    {   
-        inventorySlots[currentSlotIndex].SetCurrentSlot(true);
+    {
         ClearUIItemsData();
+        inventorySlots[currentSlotIndex].SetCurrentSlot(true);
         ItemData[] itemsDatas = InventoryManager.Instance.Inventory.ToArray();
 
         foreach (ItemData itemData in itemsDatas)
@@ -74,10 +74,9 @@ public class InventoryPresent : MonoBehaviour
     {
         foreach (var slot in inventorySlots)
         {
-            UIItemData itemData = slot.GetComponentInChildren<UIItemData>();
-            if (itemData != null)
+            for (int i = slot.transform.childCount - 1; i >= 0; i--)
             {
-                Destroy(itemData.gameObject);
+                Destroy(slot.transform.GetChild(i).gameObject);
             }
         }
     }

@@ -35,7 +35,7 @@ public class InventoryManager : MonoBehaviour
         {
             Debug.Log("Using item: " + itemDataSO.itemName);
             ItemManager.Instance.UseItemSkill(itemId);
-            RemoveItemByID(itemId);
+            RemoveItemCurrentSlot(itemId);
         }
         else if (itemDataSO.itemType == ItemType.Equippable)
         {
@@ -66,7 +66,7 @@ public class InventoryManager : MonoBehaviour
         else if (itemDataSO.itemType == ItemType.Placeable)
         {
             ItemManager.Instance.PlaceItem(itemId);
-            RemoveItemByID(itemId);
+            RemoveItemCurrentSlot(itemId);
         }
         else
         {
@@ -75,11 +75,13 @@ public class InventoryManager : MonoBehaviour
     }
     public void AddItemByID(string itemId, int amount = 1)
     {
-        ItemData item = inventory.Find(i => i.id == itemId);
+        ItemDataSO itemDataSO = GetItemByID(itemId);
+        ItemData item = inventory.Find(i => i.id == itemId && i.amount < itemDataSO.maxStack);
         if (item != null)
         {
-            if (item.amount + amount > GetItemByID(itemId).maxStack)
+            if (item.amount + amount > itemDataSO.maxStack)
             {
+                Debug.Log("1");
                 if (inventory.Count >= inventoryPresent.inventorySlots.Count)
                 {
                     Debug.LogWarning("Inventory is full, cannot add more items.");
@@ -90,20 +92,22 @@ public class InventoryManager : MonoBehaviour
                 ItemData newItem = new ItemData(itemId, slotIndex, amount - (GetItemByID(itemId).maxStack - item.amount));
                 inventory.Add(newItem);
             }
-            else
-            {
+            else    
+            {   
+                Debug.Log("2");
                 item.amount += amount;
             }
         }
         else
         {
             if (inventory.Count >= inventoryPresent.inventorySlots.Count)
-            {
+            {   
                 Debug.LogWarning("Inventory is full, cannot add more items.");
                 return;
             }
-            ItemDataSO itemDataSO = allItems.Find(i => i.id == itemId);
-            if (amount > itemDataSO.maxStack)
+            Debug.Log("3");
+            
+            if (amount >= itemDataSO.maxStack)
             {
                 amount = itemDataSO.maxStack;
             }
@@ -114,6 +118,19 @@ public class InventoryManager : MonoBehaviour
         inventoryPresent.RefreshUI();
     }
     public void RemoveItemByID(string itemId, int amount = 1)
+    {
+        ItemData item = inventory.Find(i => i.id == itemId);
+        if (item != null)
+        {
+            item.amount -= amount;
+            if (item.amount <= 0)
+            {
+                inventory.Remove(item);
+            }
+        }
+        inventoryPresent.RefreshUI();
+    }
+    public void RemoveItemCurrentSlot(string itemId, int amount = 1)
     {
         int slotIndex = inventoryPresent.currentSlotIndex;
         ItemData item = inventory.Find(i => i.id == itemId && i.slotIndex == slotIndex);
@@ -128,6 +145,7 @@ public class InventoryManager : MonoBehaviour
         inventoryPresent.RefreshUI();
 
     }
+
     public ItemDataSO GetItemByID(string itemId)
     {
         return allItems.Find(i => i.id == itemId);
