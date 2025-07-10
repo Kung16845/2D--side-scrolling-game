@@ -24,11 +24,11 @@ public class InventoryManager : MonoBehaviour
     {
         UIItemData uIItemData = inventoryPresent.GetCurrentUIItemData();
         int currentSlotIndex = inventoryPresent.currentSlotIndex;
-        string itemId = uIItemData.itemID;
-        if (itemId == null)
+        if (uIItemData == null)
         {
             return;
         }
+        string itemId = uIItemData.itemID;
         ItemData item = inventory.Find(i => i.id == itemId);
         ItemDataSO itemDataSO = GetItemByID(itemId);
         if (itemDataSO.itemType == ItemType.Usable)
@@ -44,7 +44,7 @@ public class InventoryManager : MonoBehaviour
             if (player.itemEquipID == "")
             {
                 itemEquip.EquipItem();
-                player.SetItemEquip(itemId,currentSlotIndex);
+                player.SetItemEquip(itemId, currentSlotIndex);
                 uIItemData.SetActiveIconEqiup(true);
             }
             else if (player.itemEquipID == itemEquip.itemId)
@@ -58,14 +58,15 @@ public class InventoryManager : MonoBehaviour
                 UIItemData lastUIItemDataEquip = inventoryPresent.GetCurrentUIItemDataBySlotIndex(player.slotEquip);
                 itemEquip.RemoveEquipItem();
                 lastUIItemDataEquip.SetActiveIconEqiup(false);
-                player.SetItemEquip(itemId,currentSlotIndex);
+                player.SetItemEquip(itemId, currentSlotIndex);
                 itemEquip.EquipItem();
                 uIItemData.SetActiveIconEqiup(true);
             }
         }
         else if (itemDataSO.itemType == ItemType.Placeable)
         {
-            
+            ItemManager.Instance.PlaceItem(itemId);
+            RemoveItemByID(itemId);
         }
         else
         {

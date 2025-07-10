@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public AttackWand attackPrefab;
     public Transform groundCheck;
     public Slider sliderHealth;
+    public SpriteRenderer spritePlayer;
     public void SetItemEquip(string itemID, int slotEquip = -1)
     {
         this.itemEquipID = itemID;
@@ -40,6 +41,11 @@ public class PlayerController : MonoBehaviour
             Dead();
         }
     }
+    public void FlipSprite()
+    {
+        if (horizontal < 0) spritePlayer.flipX = true;
+        else spritePlayer.flipX = false;
+    }
     public void IncreaseDamage(float damage)
     {
         this.damage += damage;
@@ -47,7 +53,7 @@ public class PlayerController : MonoBehaviour
     public void DecreaseDamage(float damage)
     {
         this.damage -= damage;
-     }
+    }
     private void Update()
     {
         Move();
@@ -65,6 +71,8 @@ public class PlayerController : MonoBehaviour
         horizontal = Input.GetAxis("Horizontal");
         Vector2 movement = new Vector2(horizontal * speed, rb.velocity.y);
         rb.velocity = movement;
+
+        FlipSprite();
     }
     void Jump()
     {
@@ -89,8 +97,8 @@ public class PlayerController : MonoBehaviour
     void Dead()
     {
         Debug.Log("Player died");
-        currentHp = maxHp; 
-        transform.position = GameManager.Instance.PlayerSpawnPoint.position; 
-        rb.velocity = Vector2.zero; 
+        currentHp = maxHp;
+        transform.position = GameManager.Instance.PlayerSpawnPoint.position;
+        rb.velocity = Vector2.zero;
     }
 }
