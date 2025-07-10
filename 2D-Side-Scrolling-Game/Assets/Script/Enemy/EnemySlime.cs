@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemySlime : EnemyAI
-{   
+{
     public int countMiniSlimeSpawn = 4;
     public EnemySlime miniSlimePrefab;
     void Start()
@@ -104,9 +104,9 @@ public class EnemySlime : EnemyAI
         transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         if (Vector2.Distance(transform.position, target.position) < 0.1f)
         {
+            patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
             if (patrolIndex >= patrolPoints.Length - 1)
             {
-                patrolIndex = (patrolIndex + 1) % patrolPoints.Length;
                 currentState = Random.Range(0, 100) < 50 ? State.Idle : State.Patrol;
                 return;
             }
@@ -115,11 +115,11 @@ public class EnemySlime : EnemyAI
     public override void Dead()
     {
         base.Dead();
-        if(miniSlimePrefab)
+        if (miniSlimePrefab)
         {
             for (int i = 0; i < countMiniSlimeSpawn; i++)
             {
-                EnemySlime miniSlime = Instantiate(miniSlimePrefab, transform.position + new Vector3(i*0.5f, 0, 0), Quaternion.identity);
+                EnemySlime miniSlime = Instantiate(miniSlimePrefab, transform.position + new Vector3(i * 0.5f, 0, 0), Quaternion.identity);
                 miniSlime.patrolPoints = patrolPoints;
                 miniSlime.player = player;
             }
