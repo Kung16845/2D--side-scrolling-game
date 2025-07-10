@@ -29,4 +29,5 @@ public enum ItemType
     Equippable,
     Usable,
     Placeable,
+    Material,
 }
