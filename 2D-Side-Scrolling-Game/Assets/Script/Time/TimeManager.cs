@@ -26,6 +26,19 @@ public class TimeManager : MonoBehaviour
     {
         timeText.text = GetTimeString();
     }
+    public void TriggerNextTimePeriod()
+    {
+        if (timePeriod == TimePeriod.Evening)
+        {
+            timePeriod = TimePeriod.Morning;
+            weekday = (Weekday)(((int)weekday + 1) % 7);
+            day++;
+        }
+        else
+        {
+            timePeriod = (TimePeriod)(((int)timePeriod + 1) % 3);
+        }
+    }
     public void TickPeriod()
     {
         currentTimeBetweenTricks = 0;
@@ -46,7 +59,7 @@ public class TimeManager : MonoBehaviour
     }
     [ContextMenu("GetTimeString")]
     public string GetTimeString()
-    {   
+    {
         return $"Day: {day}, Weekday: {weekday}, Time: {timePeriod}";
     }
 }
