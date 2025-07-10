@@ -42,14 +42,18 @@ public class InventoryPresent : MonoBehaviour
     {
         return inventorySlots.FindIndex(slot => slot.transform.childCount == 0);
     }
-    public string GetCurrentUIItemDataID()
+    public UIItemData GetCurrentUIItemData()
     {
         if (inventorySlots[currentSlotIndex].transform.childCount == 0)
         {
             Debug.LogWarning("No item data found in the current slot.");
             return null;
         }
-        return inventorySlots[currentSlotIndex].GetComponentInChildren<UIItemData>().itemID;
+        return inventorySlots[currentSlotIndex].GetComponentInChildren<UIItemData>();
+    }
+    public UIItemData GetCurrentUIItemDataBySlotIndex(int slotIndex)
+    {
+        return inventorySlots[slotIndex].GetComponentInChildren<UIItemData>();
     }
     [ContextMenu("RefreshUI")]
     public void RefreshUI()

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -12,10 +13,17 @@ public class PlayerController : MonoBehaviour
     public float speed = 5f;
     public float jumpForce = 5f;
     public bool isGrounded = true;
+    public string itemEquipID;
+    public int slotEquip;
     public LayerMask groundLayer;
     public AttackWand attackPrefab;
     public Transform groundCheck;
     public Slider sliderHealth;
+    public void SetItemEquip(string itemID, int slotEquip = -1)
+    {
+        this.itemEquipID = itemID;
+        this.slotEquip = slotEquip;
+    }
     public void HealHealth(float amount)
     {
         currentHp += amount;
@@ -32,6 +40,14 @@ public class PlayerController : MonoBehaviour
             Dead();
         }
     }
+    public void IncreaseDamage(float damage)
+    {
+        this.damage += damage;
+    }
+    public void DecreaseDamage(float damage)
+    {
+        this.damage -= damage;
+     }
     private void Update()
     {
         Move();

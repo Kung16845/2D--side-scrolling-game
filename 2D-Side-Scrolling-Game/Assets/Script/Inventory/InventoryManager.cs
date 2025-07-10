@@ -22,7 +22,9 @@ public class InventoryManager : MonoBehaviour
     }
     public void UseItem()
     {
-        string itemId = inventoryPresent.GetCurrentUIItemDataID();
+        UIItemData uIItemData = inventoryPresent.GetCurrentUIItemData();
+        int currentSlotIndex = inventoryPresent.currentSlotIndex;
+        string itemId = uIItemData.itemID;
         if (itemId == null)
         {
             return;
@@ -32,8 +34,38 @@ public class InventoryManager : MonoBehaviour
         if (itemDataSO.itemType == ItemType.Usable)
         {
             Debug.Log("Using item: " + itemDataSO.itemName);
-            ItemSkillManager.Instance.UseItemSkill(itemId);
+            ItemManager.Instance.UseItemSkill(itemId);
             RemoveItemByID(itemId);
+        }
+        else if (itemDataSO.itemType == ItemType.Equippable)
+        {
+            PlayerController player = GameManager.Instance.Player;
+            ItemEquip itemEquip = ItemManager.Instance.GetItemEquipByID(itemId);
+            if (player.itemEquipID == "")
+            {
+                itemEquip.EquipItem();
+                player.SetItemEquip(itemId,currentSlotIndex);
+                uIItemData.SetActiveIconEqiup(true);
+            }
+            else if (player.itemEquipID == itemEquip.itemId)
+            {
+                itemEquip.RemoveEquipItem();
+                player.SetItemEquip("");
+                uIItemData.SetActiveIconEqiup(false);
+            }
+            else
+            {
+                UIItemData lastUIItemDataEquip = inventoryPresent.GetCurrentUIItemDataBySlotIndex(player.slotEquip);
+                itemEquip.RemoveEquipItem();
+                lastUIItemDataEquip.SetActiveIconEqiup(false);
+                player.SetItemEquip(itemId,currentSlotIndex);
+                itemEquip.EquipItem();
+                uIItemData.SetActiveIconEqiup(true);
+            }
+        }
+        else if (itemDataSO.itemType == ItemType.Placeable)
+        {
+            
         }
         else
         {
@@ -41,7 +73,7 @@ public class InventoryManager : MonoBehaviour
         }
     }
     public void AddItemByID(string itemId, int amount = 1)
-    {   
+    {
         ItemData item = inventory.Find(i => i.id == itemId);
         if (item != null)
         {

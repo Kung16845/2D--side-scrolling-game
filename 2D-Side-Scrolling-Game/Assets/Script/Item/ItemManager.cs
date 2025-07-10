@@ -2,10 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemSkillManager : MonoBehaviour
+public class ItemManager : MonoBehaviour
 {
-    public static ItemSkillManager Instance;
+    public static ItemManager Instance;
     [SerializeField] List<ItemSkill> itemSkills;
+    [SerializeField] List<ItemEquip> itemEquips;
     private void Awake()
     {
         if (Instance == null)
@@ -25,6 +26,9 @@ public class ItemSkillManager : MonoBehaviour
         {
             itemSkill.UseSkill();
         }
-
     }
+    public ItemEquip GetItemEquipByID(string itemId)
+    {
+        return itemEquips.Find(i => i.itemId == itemId);
+     }
 }
