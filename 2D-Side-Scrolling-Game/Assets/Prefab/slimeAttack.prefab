@@ -95,10 +95,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5309314742580007918}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4c90792fc3f8024b840af516ee74f6a, type: 3}
+  m_Script: {fileID: 11500000, guid: 3b8a6badbec8e0a4eb43eae43429f69e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 3
   lifeTime: 1
 --- !u!58 &8256024719279197755
 CircleCollider2D:

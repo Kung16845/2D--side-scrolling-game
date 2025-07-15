@@ -73,12 +73,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -9074539206338946419, guid: c80534141f80d28489b1ef92f8ff7d99, type: 3}
+  m_Sprite: {fileID: 425290286, guid: bdb8f78c0ab7bba498f3363ab270a57b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 3, y: 1}
+  m_Size: {x: 0.36, y: 0.22}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -112,8 +112,8 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 6.84, y: -2.46, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 4946318924118315526}
   m_Father: {fileID: 0}
@@ -150,7 +150,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.22345376}
+  m_Offset: {x: -0.0018743724, y: 0.0023086667}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -161,7 +161,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.5530925}
+  m_Size: {x: 0.3875045, y: 0.23096314}
   m_EdgeRadius: 0
 --- !u!114 &1098687872119999074
 MonoBehaviour:
@@ -172,12 +172,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8432648312624157774}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b07f5b83ce40cc640b23b47ae6718bdd, type: 3}
+  m_Script: {fileID: 11500000, guid: 0f202bdd6aa8e1540af092da56bd2fbc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: 1
+  currentState: 0
   currentHp: 100
-  maxHp: 20
+  maxHp: 100
   patrolIndex: 0
   idleTimer: 0
   idleDuration: 0
@@ -188,6 +188,6 @@ MonoBehaviour:
   speed: 2
   patrolPoints: []
   player: {fileID: 0}
-  attackPrefab: {fileID: 5309314742580007918, guid: 69d2296e5ceb72f4187a38b5393a6769, type: 3}
+  attackPrefab: {fileID: 5309314742580007918, guid: 6d539f4aca7fd1d4d8f79499597593ed, type: 3}
   countMiniSlimeSpawn: 4
-  miniSlimePrefab: {fileID: 1244754197366389629, guid: f5bed3911bca6404ba924bea28cf0fdf, type: 3}
+  miniSlimePrefab: {fileID: 1098687872119999074}

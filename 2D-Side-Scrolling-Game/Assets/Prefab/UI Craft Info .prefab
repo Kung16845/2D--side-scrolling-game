@@ -207,9 +207,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5688868181262719568}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a9697d3449fa2c4e8ebbc58055d069d, type: 3}
+  m_Script: {fileID: 11500000, guid: 292d952dfe860f843a9ed8ef96fa700e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  craftRecipeID: 
   image: {fileID: 1436562609371271326}
   textName: {fileID: 3268057743875043173}
 --- !u!1 &7112758565939469269
@@ -279,8 +280,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Button
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 0a3a29b07886c6c4c9a003bd3e6d24b9, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 0a3a29b07886c6c4c9a003bd3e6d24b9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
